@@ -1,332 +1,385 @@
-### C 语言参考
+# C 参考手册
 
-摘自 [cppreference.com](https://en.cppreference.com/mwiki/index.php?title=c&oldid=94077)
+## 编译器支持
 
-## C 语言
+C语言的标准版本包括C89, C95, C99, C11, C17和C23。不同的编译器对这些标准的支持程度各不相同。例如，GCC和Clang都提供了广泛的C99支持，而Microsoft Visual C++直到较新的版本才完全支持C99标准。对于C23标准，大多数编译器目前仍处于实验性支持阶段。
 
-### 核心分类
+## 语言特性
 
-#### 编译器支持
-编译器支持是指不同版本的 C 语言标准（如 C89、C95、C99、C11、C17、C23）在编译器中的实现情况。例如，GCC 和 Clang 是广泛使用的 C 语言编译器，它们都支持从 C99 到最新的 C23 标准。开发者可以根据项目需求选择合适的 C 标准版本进行开发。
+### 基本概念
 
-#### 语言特性
-语言特性包括基础概念、关键字、预处理器、表达式、声明、初始化、函数、语句等。这些特性共同构成了 C 语言的核心语法。
+C语言是一种过程式编程语言，其基本概念包括变量、常量、数据类型、表达式、控制结构和函数。例如：
 
-- **基础概念**：包括变量、常量、数据类型等基本编程元素。
-- **关键字**：如 `int`, `char`, `if`, `else`, `for`, `while` 等，用于定义程序结构。
-- **预处理器**：使用 `#include`, `#define`, `#ifdef` 等指令进行代码预处理。
-- **表达式**：如算术表达式、逻辑表达式等，用于执行计算或逻辑判断。
-- **声明**：定义变量、函数等的类型和名称。
-- **初始化**：为变量赋予初始值。
-- **函数**：封装代码块，可重复调用。
-- **语句**：包括控制流程语句（如 `if`, `switch`, `for`, `while`）、跳转语句（如 `break`, `continue`, `return`）等。
-
-**示例**：
 ```c
-#include <stdio.h>
-
 int main() {
-    int a = 5; // 声明并初始化变量
-    if (a > 0) { // 控制流程语句
-        printf("a is positive\n");
+    int a = 10; // 变量声明与初始化
+    const int b = 20; // 常量声明
+    if (a < b) { // 控制结构
+        printf("a is less than b\n"); // 输出语句
     }
     return 0;
 }
 ```
 
-#### 头文件
-头文件包含函数声明、宏定义、类型定义等，供源文件包含使用。常见的头文件有 `<stdio.h>`、`<stdlib.h>`、`<string.h>` 等。
+### 关键字
 
-**示例**：
+C语言有预定义的关键字，用于表示特定的功能。例如：
+
 ```c
-#include <stdio.h>
-
 int main() {
-    printf("Hello, World!\n"); // 使用 stdio.h 中的 printf 函数
+    register int i = 0; // register关键字建议编译器将变量存储在寄存器中
+    volatile int j = 10; // volatile关键字告诉编译器变量可能在程序之外被修改
+    static int k = 20; // static关键字声明静态局部变量或静态全局变量
     return 0;
 }
 ```
 
-#### 类型支持
-C 语言支持多种数据类型，包括基本数据类型（如 `int`, `char`, `float`, `double`）和复合数据类型（如结构体、联合体、枚举）。此外，还支持指针类型和数组类型。
+### 预处理器
 
-**示例**：
+C语言使用预处理器来处理代码中的宏定义、文件包含、条件编译等。例如：
+
 ```c
-#include <stdio.h>
-
-struct Point {
-    int x;
-    int y;
-};
+#define PI 3.14159 // 宏定义
+#include <stdio.h> // 文件包含
 
 int main() {
-    struct Point p1 = {10, 20};
-    printf("Point coordinates: (%d, %d)\n", p1.x, p1.y);
+    printf("The value of PI is %f\n", PI); // 使用宏
+    #ifdef DEBUG // 条件编译
+    printf("Debug mode\n");
+    #endif
     return 0;
 }
 ```
 
-#### 程序工具
-程序工具包括标准库中提供的实用函数和宏，用于辅助程序开发。常见的工具包括内存管理、字符串处理、文件操作等。
+### 表达式
 
-**示例**：
+表达式是由操作数和操作符组成的语句，用于计算值。例如：
+
+```c
+int main() {
+    int a = 10;
+    int b = 5;
+    int c = a + b; // 算术表达式
+    int d = (a > b) ? a : b; // 条件表达式
+    return 0;
+}
+```
+
+### 声明
+
+声明用于告诉编译器变量的名称和类型。例如：
+
+```c
+int a; // 声明一个整数变量
+float b; // 声明一个浮点数变量
+char c; // 声明一个字符变量
+```
+
+### 初始化
+
+初始化是在声明变量时为其赋初值。例如：
+
+```c
+int a = 10; // 整数变量初始化
+float b = 3.14; // 浮点数变量初始化
+char c = 'A'; // 字符变量初始化
+```
+
+### 函数
+
+函数是执行特定任务的代码块。例如：
+
+```c
+#include <stdio.h>
+
+int add(int x, int y) { // 函数声明和定义
+    return x + y;
+}
+
+int main() {
+    int result = add(5, 3); // 调用函数
+    printf("The result is %d\n", result);
+    return 0;
+}
+```
+
+### 语句
+
+语句是C语言中最小的独立代码单元，包括表达式语句、复合语句、选择语句、迭代语句和跳转语句。例如：
+
+```c
+int main() {
+    int a = 10;
+    if (a > 5) { // 选择语句
+        printf("a is greater than 5\n");
+    } else {
+        printf("a is not greater than 5\n");
+    }
+
+    for (int i = 0; i < 10; i++) { // 迭代语句
+        printf("%d ", i);
+    }
+
+    return 0;
+}
+```
+
+## 头文件
+
+头文件包含了函数声明、宏定义和类型定义。例如：
+
 ```c
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
 int main() {
-    char str[] = "Hello, World!";
-    char *copy = malloc(strlen(str) + 1); // 动态内存分配
-    strcpy(copy, str); // 字符串复制
-    printf("Copied string: %s\n", copy);
-    free(copy); // 释放内存
+    printf("Hello, World!\n"); // 使用stdio.h中的函数
+    int *ptr = malloc(sizeof(int)); // 使用stdlib.h中的函数
+    free(ptr); // 使用stdlib.h中的函数
     return 0;
 }
 ```
 
-#### 可变参数函数
-可变参数函数允许函数接受可变数量和类型的参数。C 标准库中的 `printf` 和 `scanf` 就是典型的可变参数函数。
+## 类型支持
 
-**示例**：
+C语言支持多种内置数据类型，包括整数类型、浮点类型和字符类型。例如：
+
 ```c
-#include <stdio.h>
-#include <stdarg.h>
+int a = 10; // 整数类型
+float b = 3.14; // 浮点类型
+double c = 2.718; // 双精度浮点类型
+char d = 'A'; // 字符类型
+```
 
-void print_numbers(int count, ...) {
+## 程序实用工具
+
+### 可变参数函数
+
+可变参数函数允许函数接受可变数量的参数。例如：
+
+```c
+#include <stdarg.h>
+#include <stdio.h>
+
+double average(int count, ...) {
     va_list args;
+    double sum = 0;
     va_start(args, count);
     for (int i = 0; i < count; i++) {
-        int num = va_arg(args, int);
-        printf("%d ", num);
+        sum += va_arg(args, double);
     }
     va_end(args);
-    printf("\n");
+    return sum / count;
 }
 
 int main() {
-    print_numbers(3, 1, 2, 3); // 输出: 1 2 3
+    printf("Average: %f\n", average(3, 1.0, 2.0, 3.0));
     return 0;
 }
 ```
 
-#### 错误处理
-C 语言没有内置的异常处理机制，但可以通过返回值、全局变量（如 `errno`）和自定义错误处理函数来实现错误处理。
+### 诊断库
 
-**示例**：
+诊断库提供了报告错误和诊断信息的功能。例如：
+
 ```c
-#include <stdio.h>
 #include <errno.h>
-#include <string.h>
-
-int divide(int numerator, int denominator) {
-    if (denominator == 0) {
-        errno = EINVAL; // 设置错误码
-        return -1;
-    }
-    return numerator / denominator;
-}
+#include <stdio.h>
 
 int main() {
-    int result = divide(10, 0);
-    if (result == -1 && errno != 0) {
-        fprintf(stderr, "Error: %s\n", strerror(errno)); // 输出错误信息
+    FILE *file = fopen("nonexistentfile.txt", "r");
+    if (!file) {
+        perror("Failed to open file"); // 使用perror函数输出错误信息
     }
     return 0;
 }
 ```
 
-#### 动态内存管理
-动态内存管理允许程序在运行时分配和释放内存。常用函数包括 `malloc`, `calloc`, `realloc`, `free`。
+## 动态内存管理
 
-**示例**：
+动态内存管理允许程序在运行时分配和释放内存。例如：
+
 ```c
-#include <stdio.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 int main() {
-    int n = 5;
-    int *arr = (int *)malloc(n * sizeof(int)); // 分配内存
+    int *arr = (int *)malloc(5 * sizeof(int)); // 动态分配内存
     if (arr == NULL) {
         fprintf(stderr, "Memory allocation failed\n");
         return 1;
     }
-    for (int i = 0; i < n; i++) {
+
+    for (int i = 0; i < 5; i++) {
         arr[i] = i * 10;
     }
-    for (int i = 0; i < n; i++) {
+
+    for (int i = 0; i < 5; i++) {
         printf("%d ", arr[i]);
     }
     printf("\n");
+
     free(arr); // 释放内存
     return 0;
 }
 ```
 
-#### 字符串库
-字符串库提供了处理空终止字符串的函数，包括字节字符串、多字节字符串和宽字符串。
+## 字符串库
 
-**示例**：
+字符串库提供了处理字符串的各种函数。例如：
+
 ```c
-#include <stdio.h>
 #include <string.h>
+#include <stdio.h>
 
 int main() {
     char src[] = "Hello";
     char dest[10];
-    strcpy(dest, src); // 字符串复制
+    strcpy(dest, src); // 使用strcpy函数复制字符串
     printf("Copied string: %s\n", dest);
     return 0;
 }
 ```
 
-#### 算法库
-C 标准库并没有专门的算法库，但提供了许多常用的数学函数和工具，如 `<math.h>` 提供的数学运算函数。
+## 算法库
 
-**示例**：
+算法库提供了各种算法函数，如排序、搜索等。例如：
+
 ```c
 #include <stdio.h>
-#include <math.h>
+#include <stdlib.h>
+
+int compare(const void *a, const void *b) {
+    return (*(int*)a - *(int*)b);
+}
 
 int main() {
-    double x = 2.0;
-    double result = pow(x, 3); // 计算 x 的立方
-    printf("2^3 = %f\n", result);
+    int arr[] = {5, 2, 9, 1, 5, 6};
+    qsort(arr, 6, sizeof(int), compare); // 使用qsort函数进行排序
+    for (int i = 0; i < 6; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
     return 0;
 }
 ```
 
-#### 数值计算
-数值计算库提供了一系列数学运算函数，包括基本算术运算、三角函数、对数函数等。`<math.h>` 头文件包含了这些函数。
+## 数值库
 
-**示例**：
+数值库提供了各种数学函数和常量。例如：
+
 ```c
-#include <stdio.h>
 #include <math.h>
+#include <stdio.h>
 
 int main() {
-    double angle = M_PI / 4; // 45 度
-    double sin_value = sin(angle);
-    printf("sin(45 degrees) = %f\n", sin_value);
+    double num = 4.0;
+    double square_root = sqrt(num); // 使用sqrt函数计算平方根
+    printf("Square root of %.2f is %.2f\n", num, square_root);
     return 0;
 }
 ```
 
-#### 日期时间工具
-日期时间工具提供了处理日期和时间的函数，如 `<time.h>` 提供的时间操作函数。
+## 日期和时间实用工具
 
-**示例**：
+日期和时间实用工具提供了处理日期和时间的各种函数。例如：
+
 ```c
-#include <stdio.h>
 #include <time.h>
+#include <stdio.h>
 
 int main() {
     time_t rawtime;
     struct tm * timeinfo;
 
-    time(&rawtime);
-    timeinfo = localtime(&rawtime);
+    time(&rawtime); // 获取当前时间
+    timeinfo = localtime(&rawtime); // 将时间转换为本地时间
 
-    printf("Current local time and date: %s", asctime(timeinfo));
+    printf("Current local time and date: %s", asctime(timeinfo)); // 使用asctime函数输出时间
     return 0;
 }
 ```
 
-#### 输入/输出支持
-输入/输出支持包括文件操作和标准输入输出函数，如 `<stdio.h>` 提供的文件操作函数。
+## 输入输出支持
 
-**示例**：
+输入输出支持提供了处理输入和输出的各种函数。例如：
+
 ```c
 #include <stdio.h>
 
 int main() {
-    FILE *file = fopen("example.txt", "w");
-    if (file == NULL) {
-        perror("Error opening file");
-        return 1;
-    }
-    fprintf(file, "Hello, World!\n");
-    fclose(file);
+    int num;
+    printf("Enter an integer: ");
+    scanf("%d", &num); // 使用scanf函数读取用户输入
+    printf("You entered: %d\n", num);
     return 0;
 }
 ```
 
-#### 本地化支持
-本地化支持提供了处理不同语言和地区设置的函数，如 `<locale.h>` 提供的本地化函数。
+## 国际化支持
 
-**示例**：
+国际化支持提供了处理多语言和多区域设置的各种函数。例如：
+
 ```c
-#include <stdio.h>
 #include <locale.h>
+#include <stdio.h>
 
 int main() {
-    setlocale(LC_ALL, "en_US.UTF-8");
-    printf("Locale set to en_US.UTF-8\n");
+    setlocale(LC_ALL, ""); // 设置区域为默认区域
+    printf("Locale: %s\n", setlocale(LC_ALL, NULL)); // 输出当前区域设置
     return 0;
 }
 ```
 
-#### 并发支持 (C11)
-C11 引入了多线程支持，包括线程创建、同步原语等。`<threads.h>` 头文件提供了这些功能。
+## 并发支持（C11）
 
-**示例**：
+并发支持提供了多线程编程的功能。例如：
+
 ```c
 #include <stdio.h>
-#include <threads.h>
+#include <stdlib.h>
+#include <pthread.h>
 
-int thread_func(void *arg) {
-    int *num = (int *)arg;
-    printf("Thread number: %d\n", *num);
-    return 0;
+void* thread_function(void* arg) {
+    printf("Thread is running\n");
+    return NULL;
 }
 
 int main() {
-    thrd_t threads[5];
-    int numbers[5] = {1, 2, 3, 4, 5};
-
-    for (int i = 0; i < 5; i++) {
-        thrd_create(&threads[i], thread_func, &numbers[i]);
-    }
-
-    for (int i = 0; i < 5; i++) {
-        thrd_join(threads[i], NULL);
-    }
-
+    pthread_t thread;
+    pthread_create(&thread, NULL, thread_function, NULL); // 创建线程
+    pthread_join(thread, NULL); // 等待线程结束
     return 0;
 }
 ```
 
-#### 技术规范
-技术规范提供了对 C 语言标准的补充和扩展，包括动态内存扩展、浮点扩展等。
+## 技术规范
 
-- **动态内存扩展**（动态内存技术报告）
-- **浮点扩展 Part 1**（FP Ext 1 技术规范）
-- **浮点扩展 Part 4**（FP Ext 4 技术规范）
+技术规范提供了对C语言标准的补充和扩展。例如：
 
-#### 符号索引
-符号索引列出了标准库中的所有符号，方便开发者查找和使用。
+- **动态内存扩展**：提供了额外的内存管理功能。
+- **浮点扩展**：提供了更高级的浮点运算支持。
+- **复数运算**：提供了复数类型和运算支持。
 
-### 标准版本与编译器支持
+## 符号索引
 
-| 标准版本          | 语言特性分类                                                                                                                                                                                                                             | 库功能分类                                                                                                                                                                                                                                   |
-| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| C89、C95、C99、C11、C17、C23 | **语言特性**<br>• 基础概念<br>• 关键字<br>• 预处理器<br>• 表达式<br>• 声明<br>• 初始化<br>• 函数<br>• 语句<br><br>**头文件**<br><br>**类型支持**                                                                                         | **程序工具**<br><br>**可变参数函数**<br><br>**诊断库**<br><br>**动态内存管理**<br><br>**字符串库**<br>• 空终止字符串：<br>   - 字节字符串<br>   - 多字节字符串<br>   - 宽字符串<br><br>**日期时间库**<br><br>**本地化库**<br><br>**输入/输出库** |
-|                     | **算法库**<br><br>**数值计算库**<br>• 常用数学函数<br>• 浮点环境 (C99)<br>• 伪随机数生成<br>• 复数运算 (C99)<br>• 泛型数学 (C99)<br>• 位操作 (C23)<br>• 受检整数运算 (C23)<br><br>**并发支持库 (C11)**                                                                                       |                                                                                                                                                                                                                                            |
+符号索引提供了对所有C语言符号的快速查找。例如：
 
-### 技术规范
-
-| 技术规范                                                                 |
-| ------------------------------------------------------------------------ |
-| **动态内存扩展**（动态内存技术报告）                                     |
-| **浮点扩展 Part 1**（FP Ext 1 技术规范）                                 |
-| **浮点扩展 Part 4**（FP Ext 4 技术规范）                                 |
-
-### 外部链接
-
-- **在线版本**  
-- **离线版本**（获取于 2025-02-09 16:39）  
-- 本页面最后修改于 2017年7月3日 20:56 (UTC+8)
+- `malloc`：动态分配内存。
+- `free`：释放动态分配的内存。
+- `printf`：格式化输出到标准输出。
+- `scanf`：格式化输入从标准输入。
 
 ---
 
-通过以上扩展和优化，文档变得更加详细、规范和易于阅读，涵盖了 C 语言的核心概念和技术细节。
+### 导航
+
+- [在线版本](https://en.cppreference.com/w/c)
+- 离线版本检索于 2025-02-09 16:39。
+- 该页面最后修改于 2017 年 7 月 3 日 20:56。
+
+确保所有术语和概念均符合C/C++语言标准和专业文档的规范表达。
+
+---
+
+以上文档对C语言进行了详细的解释，并提供了丰富的示例，帮助读者更好地理解和掌握C语言的各种特性和功能。

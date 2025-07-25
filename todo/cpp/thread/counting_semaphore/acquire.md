@@ -1,0 +1,249 @@
+# std::counting_semaphore<LeastMaxValue>::acquire
+
+From cppreference.com
+< cpp‎ | thread‎ | counting semaphore
+C++
+
+|  |  |  |  |  |
+| --- | --- | --- | --- | --- |
+| Compiler support | | | | |
+| Freestanding and hosted | | | | |
+| Language | | | | |
+| Standard library | | | | |
+| Standard library headers | | | | |
+| Named requirements | | | | |
+| Feature test macros (C++20) | | | | |
+| Language support library | | | | |
+| Concepts library (C++20) | | | | |
+| Diagnostics library | | | | |
+| Memory management library | | | | |
+| Metaprogramming library (C++11) | | | | |
+| General utilities library | | | | |
+| Containers library | | | | |
+| Iterators library | | | | |
+| Ranges library (C++20) | | | | |
+| Algorithms library | | | | |
+| Strings library | | | | |
+| Text processing library | | | | |
+| Numerics library | | | | |
+| Date and time library | | | | |
+| Input/output library | | | | |
+| Filesystem library (C++17) | | | | |
+| Concurrency support library (C++11) | | | | |
+| Execution support library (C++26) | | | | |
+| Technical specifications | | | | |
+| Symbols index | | | | |
+| External libraries | | | | |
+
+Concurrency support library
+
+|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| |  |  |  |  |  | | --- | --- | --- | --- | --- | | Threads | | | | | | thread(C++11) | | | | | | jthread(C++20) | | | | | | hardware_destructive_interference_sizehardware_constructive_interference_size(C++17)(C++17) | | | | | | `this_thread` namespace | | | | | | |  |  |  |  |  | | --- | --- | --- | --- | --- | | get_id(C++11) | | | | | | yield(C++11) | | | | | | |  |  |  |  |  | | --- | --- | --- | --- | --- | | sleep_for(C++11) | | | | | | sleep_until(C++11) | | | | | | | Cooperative cancellation | | | | | | |  |  |  |  |  | | --- | --- | --- | --- | --- | | stop_token(C++20) | | | | | | inplace_stop_token")(C++26) | | | | | | never_stop_token(C++26) | | | | | | stop_source(C++20) | | | | | | inplace_stop_source")(C++26) | | | | | | stop_callback(C++20) | | | | | | |  |  |  |  |  | | --- | --- | --- | --- | --- | | inplace_stop_callback")(C++26) | | | | | | stop_callback_for_t(C++26) | | | | | | stoppable_token(C++26) | | | | | | unstoppable_token(C++26) | | | | | | **stoppable-source**")(C++26) | | | | | | **stoppable-callback-for**")(C++26) | | | | | | | Mutual exclusion | | | | | | |  |  |  |  |  | | --- | --- | --- | --- | --- | | mutex(C++11) | | | | | | recursive_mutex(C++11) | | | | | | shared_mutex(C++17) | | | | | | |  |  |  |  |  | | --- | --- | --- | --- | --- | | timed_mutex(C++11) | | | | | | recursive_timed_mutex(C++11) | | | | | | shared_timed_mutex(C++14) | | | | | | | Generic lock management | | | | | | |  |  |  |  |  | | --- | --- | --- | --- | --- | | lock(C++11) | | | | | | lock_guard(C++11) | | | | | | scoped_lock(C++17) | | | | | | unique_lock(C++11) | | | | | | shared_lock(C++14) | | | | | | once_flag(C++11) | | | | | | call_once(C++11) | | | | | | |  |  |  |  |  | | --- | --- | --- | --- | --- | | try_lock(C++11) | | | | | | defer_locktry_to_lockadopt_lockdefer_lock_ttry_to_lock_tadopt_lock_t(C++11)(C++11)(C++11)(C++11)(C++11)(C++11) | | | | | | | Condition variables | | | | | | condition_variable(C++11) | | | | | | condition_variable_any(C++11) | | | | | | notify_all_at_thread_exit(C++11) | | | | | | cv_status(C++11) | | | | | | Semaphores | | | | | | counting_semaphorebinary_semaphore(C++20)(C++20) | | | | | | Latches and Barriers | | | | | | |  |  |  |  |  | | --- | --- | --- | --- | --- | | latch(C++20) | | | | | | |  |  |  |  |  | | --- | --- | --- | --- | --- | | barrier(C++20) | | | | | | | Futures | | | | | | |  |  |  |  |  | | --- | --- | --- | --- | --- | | promise(C++11) | | | | | | future(C++11) | | | | | | shared_future(C++11) | | | | | | packaged_task(C++11) | | | | | | async(C++11) | | | | | | |  |  |  |  |  | | --- | --- | --- | --- | --- | | launch(C++11) | | | | | | future_status(C++11) | | | | | | future_error(C++11) | | | | | | future_category(C++11) | | | | | | future_errc(C++11) | | | | | | | Safe Reclamation | | | | | | |  |  |  |  |  | | --- | --- | --- | --- | --- | | rcu_obj_base")(C++26) | | | | | | rcu_domain")(C++26) | | | | | | rcu_default_domain")(C++26) | | | | | | |  |  |  |  |  | | --- | --- | --- | --- | --- | | rcu_synchronize")(C++26) | | | | | | rcu_barrier")(C++26) | | | | | | rcu_retire")(C++26) | | | | | | | Hazard Pointers | | | | | | hazard_pointer_obj_base")(C++26) | | | | | | hazard_pointer")(C++26) | | | | | | make_hazard_pointer")(C++26) | | | | | | |  |  |  |  |  | | --- | --- | --- | --- | --- | | Atomic types | | | | | | atomic(C++11) | | | | | | atomic_ref(C++20) | | | | | | atomic_flag(C++11) | | | | | | Initialization of atomic types | | | | | | atomic_init(C++11)(deprecated in C++20) | | | | | | ATOMIC_VAR_INIT(C++11)(deprecated in C++20) | | | | | | ATOMIC_FLAG_INIT(C++11) | | | | | | Memory ordering | | | | | | memory_order(C++11) | | | | | | kill_dependency(C++11) | | | | | | atomic_thread_fence(C++11) | | | | | | atomic_signal_fence(C++11) | | | | | | Free functions for atomic operations | | | | | | atomic_storeatomic_store_explicit(C++11)(C++11) | | | | | | atomic_loadatomic_load_explicit(C++11)(C++11) | | | | | | atomic_exchangeatomic_exchange_explicit(C++11)(C++11) | | | | | | atomic_compare_exchange_weakatomic_compare_exchange_weak_explicitatomic_compare_exchange_strongatomic_compare_exchange_strong_explicit(C++11)(C++11)(C++11)(C++11) | | | | | | atomic_fetch_addatomic_fetch_add_explicit(C++11)(C++11) | | | | | | atomic_fetch_subatomic_fetch_sub_explicit(C++11)(C++11) | | | | | | atomic_fetch_andatomic_fetch_and_explicit(C++11)(C++11) | | | | | | atomic_fetch_oratomic_fetch_or_explicit(C++11)(C++11) | | | | | | atomic_fetch_xoratomic_fetch_xor_explicit(C++11)(C++11) | | | | | | atomic_fetch_maxatomic_fetch_max_explicit(C++26)(C++26) | | | | | | atomic_fetch_minatomic_fetch_min_explicit(C++26)(C++26) | | | | | | atomic_is_lock_free(C++11) | | | | | | atomic_waitatomic_wait_explicit(C++20)(C++20) | | | | | | atomic_notify_one(C++20) | | | | | | atomic_notify_all(C++20) | | | | | | Free functions for atomic flags | | | | | | atomic_flag_test_and_setatomic_flag_test_and_set_explicit(C++11)(C++11) | | | | | | atomic_flag_clearatomic_flag_clear_explicit(C++11)(C++11) | | | | | | atomic_flag_testatomic_flag_test_explicit(C++20)(C++20) | | | | | | atomic_flag_waitatomic_flag_wait_explicit(C++20)(C++20) | | | | | | atomic_flag_notify_one(C++20) | | | | | | atomic_flag_notify_all(C++20) | | | | | |
+
+std::counting_semaphore
+
+|  |  |  |  |  |
+| --- | --- | --- | --- | --- |
+| Member functions | | | | |
+| counting_semaphore::counting_semaphore | | | | |
+| counting_semaphore::~counting_semaphore | | | | |
+| Operations | | | | |
+| counting_semaphore::release | | | | |
+| ****counting_semaphore::acquire**** | | | | |
+| counting_semaphore::try_acquire | | | | |
+| counting_semaphore::try_acquire_for | | | | |
+| counting_semaphore::try_acquire_until | | | | |
+| Constants | | | | |
+| counting_semaphore::max | | | | |
+
+|  |  |  |
+| --- | --- | --- |
+| void acquire(); |  | (since C++20) |
+|  |  |  |
+
+Atomically decrements the internal counter by 1 if it is greater than ​0​; otherwise blocks until it is greater than ​0​ and can successfully decrement the internal counter.
+
+### Preconditions
+
+(none)
+
+### Parameters
+
+(none)
+
+### Exceptions
+
+May throw std::system_error.
+
+### Example
+
+The example visualizes a concurrent work of several randomized threads when no more than N (N is the semaphore **desired** value) of the thread-functions are active, while the other might wait on the semaphore.
+
+Run this code
+
+```
+#include <array>
+#include <chrono>
+#include <cstddef>
+#include <iomanip>
+#include <iostream>
+#include <mutex>
+#include <new>
+#include <random>
+#include <semaphore>
+#include <thread>
+#include <vector>
+ 
+using namespace std::literals;
+ 
+constexpr std::size_t max_threads{10U}; // change and see the effect
+constexpr std::ptrdiff_t max_sema_threads{3}; // {1} for binary semaphore
+std::counting_semaphore semaphore{max_sema_threads};
+constexpr auto time_tick{10ms};
+ 
+unsigned rnd()
+{
+    static std::uniform_int_distribution<unsigned> distribution{2U, 9U}; // [delays]
+    static std::random_device engine;
+    static std::mt19937 noise{engine()};
+    return distribution(noise);
+}
+ 
+class alignas(std::hardware_destructive_interference_size) Guide
+{
+    inline static std::mutex cout_mutex;
+    inline static std::chrono::time_point<std::chrono::high_resolution_clock> started_at;
+    unsigned delay{rnd()}, occupy{rnd()}, wait_on_sema{};
+ 
+public:
+    static void start_time() { started_at = std::chrono::high_resolution_clock::now(); }
+ 
+    void initial_delay() { std::this_thread::sleep_for(delay * time_tick); }
+ 
+    void occupy_sema()
+    {
+        wait_on_sema =
+            static_cast<unsigned>(std::chrono::duration_cast<std::chrono::milliseconds>(
+                std::chrono::high_resolution_clock::now() - started_at -
+                delay * time_tick).count() / time_tick.count());
+        std::this_thread::sleep_for(occupy * time_tick);
+    }
+ 
+    void visualize(unsigned id, unsigned x_scale = 2) const
+    {
+        auto cout_n = =
+        {
+            for (n *= x_scale; n-- > 0; std::cout << str)
+                ;
+        };
+        std::lock_guard lk{cout_mutex};
+        std::cout << '#' << std::setw(2) << id << ' ';
+        cout_n("░", delay);
+        cout_n("▒", wait_on_sema);
+        cout_n("█", occupy);
+        std::cout << '\n';
+    }
+ 
+    static void show_info()
+    {
+        std::cout << "\nThreads: " << max_threads << ", Throughput: " << max_sema_threads
+                  << " │ Legend: initial delay ░░ │ wait state ▒▒ │ sema occupation ██ \n"
+                  << std::endl;
+    }
+};
+ 
+std::array<Guide, max_threads> guides;
+ 
+void workerThread(unsigned id)
+{
+    guides[id].initial_delay(); // emulate some work before sema acquisition
+    semaphore.acquire();        // wait until a free sema slot is available
+    guides[id].occupy_sema();   // emulate some work while sema is acquired
+    semaphore.release();
+    guides[id].visualize(id);
+}
+ 
+int main()
+{
+    std::vector<std::jthread> threads;
+    threads.reserve(max_threads);
+ 
+    Guide::show_info();
+    Guide::start_time();
+ 
+    for (auto id{0U}; id != max_threads; ++id)
+        threads.push_back(std::jthread(workerThread, id));
+}
+
+```
+
+Possible output:
+
+```
+Default case: max_threads{10U}, max_sema_threads{3}
+ 
+Threads: 10, Throughput: 3 │ Legend: initial delay ░░ │ wait state ▒▒ │ sema occupation ██
+ 
+# 1 ░░░░██████
+# 2 ░░░░████████
+# 5 ░░░░░░██████████
+# 8 ░░░░░░░░░░░░████████████
+# 9 ░░░░░░░░░░░░██████████████
+# 7 ░░░░░░░░░░░░▒▒▒▒████████████████
+# 4 ░░░░░░░░░░░░░░▒▒▒▒▒▒▒▒▒▒▒▒████████
+# 6 ░░░░░░░░░░░░░░▒▒▒▒▒▒▒▒▒▒██████████████████
+# 3 ░░░░░░░░░░░░░░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒████████████
+# 0 ░░░░░░░░░░░░░░░░░░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██████████████
+ 
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────
+"Enough for everyone" case (no wait states!): max_threads{10U}, max_sema_threads{10}
+ 
+Threads: 10, Throughput: 10 │ Legend: initial delay ░░ │ wait state ▒▒ │ sema occupation ██
+ 
+# 4 ░░░░██████
+# 5 ░░░░░░████
+# 3 ░░░░██████████
+# 1 ░░░░██████████
+# 8 ░░░░░░░░████████████
+# 6 ░░░░░░░░░░░░░░░░██████
+# 7 ░░░░░░░░░░░░░░░░██████
+# 9 ░░░░░░░░░░░░░░░░██████████
+# 0 ░░░░░░░░░░░░██████████████████
+# 2 ░░░░░░░░░░░░░░░░░░████████████
+ 
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────
+Binary semaphore case: max_threads{10U}, max_sema_threads{1}
+ 
+Threads: 10, Throughput: 1 │ Legend: initial delay ░░ │ wait state ▒▒ │ sema occupation ██
+ 
+# 6 ░░░░████
+# 5 ░░░░▒▒▒▒████
+# 4 ░░░░░░░░░░▒▒██████████
+# 7 ░░░░░░░░░░▒▒▒▒▒▒▒▒▒▒▒▒████████████████
+# 2 ░░░░░░░░░░░░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██████
+# 3 ░░░░░░░░░░░░░░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒████████████████
+# 0 ░░░░░░░░░░░░░░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒████████████
+# 1 ░░░░░░░░░░░░░░░░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒████████
+# 8 ░░░░░░░░░░░░░░░░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██████
+# 9 ░░░░░░░░░░░░░░░░░░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██████████████
+
+```
+
+### See also
+
+|  |  |
+| --- | --- |
+| release | increments the internal counter and unblocks acquirers   (public member function) |
+| try_acquire | tries to decrement the internal counter without blocking   (public member function) |
+| try_acquire_for | tries to decrement the internal counter, blocking for up to a duration time   (public member function) |
+| try_acquire_until | tries to decrement the internal counter, blocking until a point in time   (public member function) |
+
+Retrieved from "<https://en.cppreference.com/mwiki/index.php?title=cpp/thread/counting_semaphore/acquire&oldid=161745>"
+
+##### Navigation
+
+- Online version
+- Offline version retrieved 2025-02-09 16:39.
+
+- This page was last modified on 29 October 2023, at 18:55.

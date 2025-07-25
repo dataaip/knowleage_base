@@ -1,0 +1,123 @@
+# operator==, operator<=>(std::basic_stacktrace)
+
+From cppreference.com
+< cpp‎ | utility‎ | basic stacktrace
+C++
+
+|  |  |  |  |  |
+| --- | --- | --- | --- | --- |
+| Compiler support | | | | |
+| Freestanding and hosted | | | | |
+| Language | | | | |
+| Standard library | | | | |
+| Standard library headers | | | | |
+| Named requirements | | | | |
+| Feature test macros (C++20) | | | | |
+| Language support library | | | | |
+| Concepts library (C++20) | | | | |
+| Diagnostics library | | | | |
+| Memory management library | | | | |
+| Metaprogramming library (C++11) | | | | |
+| General utilities library | | | | |
+| Containers library | | | | |
+| Iterators library | | | | |
+| Ranges library (C++20) | | | | |
+| Algorithms library | | | | |
+| Strings library | | | | |
+| Text processing library | | | | |
+| Numerics library | | | | |
+| Date and time library | | | | |
+| Input/output library | | | | |
+| Filesystem library (C++17) | | | | |
+| Concurrency support library (C++11) | | | | |
+| Execution support library (C++26) | | | | |
+| Technical specifications | | | | |
+| Symbols index | | | | |
+| External libraries | | | | |
+
+Diagnostics library
+
+|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| |  |  |  |  |  | | --- | --- | --- | --- | --- | | Exception handling | | | | | | exception | | | | | | uncaught_exceptionuncaught_exceptions(until C++20\*)(C++17) | | | | | | exception_ptr(C++11) | | | | | | make_exception_ptr(C++11) | | | | | | current_exception(C++11) | | | | | | rethrow_exception(C++11) | | | | | | nested_exception(C++11) | | | | | | throw_with_nested(C++11) | | | | | | rethrow_if_nested(C++11) | | | | | | Exception handling failures | | | | | | terminate | | | | | | terminate_handler | | | | | | get_terminate(C++11) | | | | | | set_terminate | | | | | | bad_exception | | | | | | unexpected(until C++17\*) | | | | | | unexpected_handler(until C++17\*) | | | | | | get_unexpected(until C++17\*) | | | | | | set_unexpected(until C++17\*) | | | | | | Error numbers | | | | | | Error codes | | | | | | errno | | | | | | Assertions | | | | | | assert | | | | | | |  |  |  |  |  | | --- | --- | --- | --- | --- | | Exception categories | | | | | | logic_error | | | | | | invalid_argument | | | | | | domain_error | | | | | | length_error | | | | | | out_of_range | | | | | | runtime_error | | | | | | range_error | | | | | | overflow_error | | | | | | underflow_error | | | | | | tx_exception(TM TS) | | | | | | System error | | | | | | error_category(C++11) | | | | | | generic_category(C++11) | | | | | | system_category(C++11) | | | | | | error_condition(C++11) | | | | | | errc(C++11) | | | | | | error_code(C++11) | | | | | | system_error(C++11) | | | | | | Stacktrace | | | | | | stacktrace_entry(C++23) | | | | | | basic_stacktrace(C++23) | | | | | | Debugging support | | | | | | is_debugger_present(C++26) | | | | | | breakpoint_if_debugging(C++26) | | | | | | breakpoint(C++26) | | | | | |
+
+std::basic_stacktrace
+
+|  |  |  |  |  |
+| --- | --- | --- | --- | --- |
+| Member functions | | | | |
+| basic_stacktrace::basic_stacktrace | | | | |
+| basic_stacktrace::~basic_stacktrace | | | | |
+| basic_stacktrace::operator= | | | | |
+| basic_stacktrace::current | | | | |
+| basic_stacktrace::get_allocator | | | | |
+| Iterators | | | | |
+| basic_stacktrace::beginbasic_stacktrace::cbegin | | | | |
+| basic_stacktrace::endbasic_stacktrace::cend | | | | |
+| basic_stacktrace::rbeginbasic_stacktrace::crbegin | | | | |
+| basic_stacktrace::rendbasic_stacktrace::crend | | | | |
+| Capacity | | | | |
+| basic_stacktrace::empty | | | | |
+| basic_stacktrace::size | | | | |
+| basic_stacktrace::max_size | | | | |
+| Element access | | | | |
+| [basic_stacktrace::operator[]](operator_at.html "cpp/utility/basic stacktrace/operator at") | | | | |
+| basic_stacktrace::at | | | | |
+| Modifiers | | | | |
+| basic_stacktrace::swap | | | | |
+| Non-member functions | | | | |
+| ****operator== operator<=>**** | | | | |
+| swap(std::basic_stacktrace) | | | | |
+| to_string(std::basic_stacktrace) | | | | |
+| operator<< | | | | |
+| Helper classes | | | | |
+| hash<std::basic_stacktrace> | | | | |
+| formatter<std::basic_stacktrace> | | | | |
+
+|  |  |  |
+| --- | --- | --- |
+| template< class Allocator2 >  friend bool operator==( const basic_stacktrace& lhs, const basic_stacktrace<Allocator2>& rhs ) noexcept; | (1) | (since C++23) |
+| template< class Allocator2 >  friend std::strong_ordering      operator<=>( const basic_stacktrace& lhs, const basic_stacktrace<Allocator2>& rhs ) noexcept; | (2) | (since C++23) |
+|  |  |  |
+
+1) Checks if the contents of lhs and rhs are equal, that is, they have the same number of elements and each element in lhs compares equal with the element in rhs at the same position. Equivalent to return std::equal(lhs.begin(), lhs.end(), rhs.begin(), rhs.end());.2) Returns the relative order of the numbers of stacktrace entries in lhs and rhs if they are not equal. Otherwise (if the numbers of elements of lhs and rhs are equal), returns the lexicographical order of the elements of lhs and rhs. Equivalent to  
+if (auto cmp = lhs.size() <=> rhs.size(); cmp != 0)  
+
+return cmp;  
+else  
+    return std::lexicographical_compare_three_way(lhs.begin(), lhs.end(),
+
+                                                  rhs.begin(), rhs.end());.
+
+These function templates are not visible to ordinary unqualified or qualified lookup, and can only be found by argument-dependent lookup when std::basic_stacktrace<Allocator> is an associated class of the arguments.
+
+The `<`, `<=`, `>`, `>=`, and `!=` operators are synthesized from operator<=> and operator== respectively.
+
+### Parameters
+
+|  |  |  |
+| --- | --- | --- |
+| lhs, rhs | - | `basic_stacktrace`s whose contents to compare |
+
+### Return value
+
+1) true if the contents of lhs and rhs are equal, false otherwise.2) lhs.size() <=> rhs.size() if the result is not std::strong_order::equal, the lexicographical order of the elements of lhs and rhs otherwise.
+
+### Complexity
+
+1,2) Constant if lhs and rhs are of different size, linear in the size of lhs otherwise.
+
+### Example
+
+|  |  |
+| --- | --- |
+|  | This section is incomplete Reason: no example |
+
+Retrieved from "<https://en.cppreference.com/mwiki/index.php?title=cpp/utility/basic_stacktrace/operator_cmp&oldid=160657>"
+
+##### Navigation
+
+- Online version
+- Offline version retrieved 2025-02-09 16:39.
+
+- This page was last modified on 13 October 2023, at 23:06.

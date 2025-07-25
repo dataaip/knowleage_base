@@ -1,0 +1,160 @@
+# std::extents<IndexType,Extents...>::extent
+
+From cppreference.com
+< cpp‎ | container‎ | mdspan‎ | extents
+C++
+
+|  |  |  |  |  |
+| --- | --- | --- | --- | --- |
+| Compiler support | | | | |
+| Freestanding and hosted | | | | |
+| Language | | | | |
+| Standard library | | | | |
+| Standard library headers | | | | |
+| Named requirements | | | | |
+| Feature test macros (C++20) | | | | |
+| Language support library | | | | |
+| Concepts library (C++20) | | | | |
+| Diagnostics library | | | | |
+| Memory management library | | | | |
+| Metaprogramming library (C++11) | | | | |
+| General utilities library | | | | |
+| Containers library | | | | |
+| Iterators library | | | | |
+| Ranges library (C++20) | | | | |
+| Algorithms library | | | | |
+| Strings library | | | | |
+| Text processing library | | | | |
+| Numerics library | | | | |
+| Date and time library | | | | |
+| Input/output library | | | | |
+| Filesystem library (C++17) | | | | |
+| Concurrency support library (C++11) | | | | |
+| Execution support library (C++26) | | | | |
+| Technical specifications | | | | |
+| Symbols index | | | | |
+| External libraries | | | | |
+
+Containers library
+
+|  |  |  |  |  |
+| --- | --- | --- | --- | --- |
+| Sequence | | | | |
+| array(C++11) | | | | |
+| vector | | | | |
+| vector<bool> | | | | |
+| inplace_vector(C++26) | | | | |
+| deque | | | | |
+| forward_list(C++11) | | | | |
+| list | | | | |
+| Associative | | | | |
+| set | | | | |
+| multiset | | | | |
+| map | | | | |
+| multimap | | | | |
+| Unordered associative | | | | |
+| unordered_set(C++11) | | | | |
+| unordered_multiset(C++11) | | | | |
+| unordered_map(C++11) | | | | |
+| unordered_multimap(C++11) | | | | |
+| Adaptors | | | | |
+| stack | | | | |
+| queue | | | | |
+| priority_queue | | | | |
+| flat_set(C++23) | | | | |
+| flat_multiset(C++23) | | | | |
+| flat_map(C++23) | | | | |
+| flat_multimap(C++23) | | | | |
+| Views | | | | |
+| span(C++20) | | | | |
+| mdspan(C++23) | | | | |
+| Tables | | | | |
+| Iterator invalidation | | | | |
+| Member function table | | | | |
+| Non-member function table | | | | |
+
+std::mdspan
+
+|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| |  |  |  |  |  | | --- | --- | --- | --- | --- | | Member functions | | | | | | mdspan::mdspan | | | | | | mdspan::operator= | | | | | | Element access | | | | | | [mdspan::operator[]](../operator_at.html "cpp/container/mdspan/operator at") | | | | | | Observers | | | | | | mdspan::rank | | | | | | mdspan::rank_dynamic | | | | | | mdspan::static_extent | | | | | | mdspan::extent | | | | | | mdspan::size | | | | | | mdspan::empty | | | | | | mdspan::stride | | | | | | mdspan::extents | | | | | | mdspan::data_handle | | | | | | mdspan::mapping | | | | | | mdspan::accessor | | | | | | mdspan::is_uniquemdspan::is_exhaustivemdspan::is_stridedmdspan::is_always_uniquemdspan::is_always_exhaustivemdspan::is_always_strided | | | | | |  | | | | | | |  |  |  |  |  | | --- | --- | --- | --- | --- | | Non-member functions | | | | | | swap(std::mdspan) | | | | | | Subviews | | | | | | submdspan")(C++26) | | | | | | submdspan_extents")(C++26) | | | | | | Helper types and templates | | | | | | extentsdextents | | | | | | dims(C++26) | | | | | | default_accessor | | | | | | aligned_accessor")(C++26) | | | | | | Layout mapping policies | | | | | | layout_left | | | | | | layout_right | | | | | | layout_stride | | | | | | layout_left_padded(C++26) | | | | | | layout_right_padded(C++26) | | | | | | Subviews helpers | | | | | | full_extent(C++26) | | | | | | strided_slice(C++26) | | | | | | submdspan_mapping_result(C++26) | | | | | | Deduction guides | | | | | |
+
+std::extents
+
+|  |  |  |  |  |
+| --- | --- | --- | --- | --- |
+| Member functions | | | | |
+| extents::extents | | | | |
+| Observers | | | | |
+| extents::rank | | | | |
+| extents::rank_dynamic | | | | |
+| extents::static_extent | | | | |
+| ****extents::extent**** | | | | |
+| Helpers | | | | |
+| extents::**fwd-prod-of-extents** | | | | |
+| extents::**rev-prod-of-extents** | | | | |
+| extents::**index-cast** | | | | |
+| extents::**dynamic-index** | | | | |
+| extents::**dynamic-index-inv** | | | | |
+| Non-member functions | | | | |
+| extents::operator== | | | | |
+| Deduction guides | | | | |
+
+|  |  |  |
+| --- | --- | --- |
+| constexpr index_type extent( rank_type i ) const noexcept; |  | (since C++23) |
+|  |  |  |
+
+Returns dynamic extent size of an `extents` at a certain rank index.
+
+### Parameters
+
+|  |  |  |
+| --- | --- | --- |
+| i | - | The rank index to get the extent size of |
+
+### Return value
+
+The dynamic extent size of an `extents` at a certain rank index.
+
+### Example
+
+Run this code
+
+```
+#include <iostream>
+#include <mdspan>
+ 
+int main()
+{
+    std::extents<int, 1, 2> e1;
+    std::extents<int, 3, std::dynamic_extent, std::dynamic_extent> e2(4, 5);
+    std::cout << e1.extent(0) << ", " << e1.extent(1) << '\n';
+    std::cout << e2.extent(0) << ", " << e2.extent(1) << ", " << e2.extent(2) << '\n';
+}
+
+```
+
+Output:
+
+```
+1, 2
+3, 4, 5
+
+```
+
+### See also
+
+|  |  |
+| --- | --- |
+| static_extent[static] | returns static extent size of an `extents` at a certain rank index   (public static member function) |
+| extent(C++11) | obtains the size of an array type along a specified dimension   (class template) |
+
+Retrieved from "<https://en.cppreference.com/mwiki/index.php?title=cpp/container/mdspan/extents/extent&oldid=157196>"
+
+##### Navigation
+
+- Online version
+- Offline version retrieved 2025-02-09 16:39.
+
+- This page was last modified on 23 August 2023, at 08:43.

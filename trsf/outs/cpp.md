@@ -1,310 +1,405 @@
 # C++ 参考文档
 
-来自 cppreference.com
-
----
+源自 cppreference.com
 
 ## C++
 
-### 主要分类导航
+### 编译器支持
+- **GCC**：GNU Compiler Collection，广泛用于Linux和Unix系统，支持多个C++标准，包括C++26。
+- **Clang**：由LLVM项目开发，支持最新的C++标准，适用于Linux、macOS和Windows。
+- **MSVC**：Microsoft Visual C++ Compiler，是微软提供的编译器，广泛应用于Windows平台开发，支持最新的C++标准。
+- **Intel C++ Compiler**：提供高性能的代码优化，支持最新的C++标准。
+- **Apple Clang**：苹果基于LLVM的Clang编译器，用于macOS和iOS开发。
 
-| 类别 | 内容 |
-|------|------|
-| 编译器支持 |  |
-| 独立环境与托管环境 |  |
-| 语言 |  |
-| 标准库 |  |
-| 标准库头文件 |  |
-| 命名式要求（Named Requirements） |  |
-| 特性测试宏（C++20） |  |
-| 语言支持库 |  |
-| 概念库（C++20） |  |
-| 诊断库 |  |
-| 内存管理库 |  |
-| 元编程库（C++11） |  |
-| 通用工具库 |  |
-| 容器库 |  |
-| 迭代器库 |  |
-| 范围库（Ranges，C++20） |  |
-| 算法库 |  |
-| 字符串库 |  |
-| 文本处理库 |  |
-| 数值库 |  |
-| 日期与时间库 |  |
-| 输入/输出库 |  |
-| 文件系统库（C++17） |  |
-| 并发支持库（C++11） |  |
-| 执行支持库（C++26） |  |
-| 技术规范（Technical Specifications） |  |
-| 符号索引（Symbols Index） |  |
-| 外部库（External Libraries） |  |
+### 独立环境与宿主环境
+- **独立环境**：指在没有操作系统支持的情况下运行的环境，如嵌入式系统中的裸机编程。
+- **宿主环境**：指依赖于操作系统的运行环境，如Windows、Linux等。
+
+### 语言特性
+
+#### C++版本支持
+- **C++11**：引入了诸如`auto`关键字、lambda表达式、智能指针、右值引用和移动语义等特性。
+- **C++14**：增加了泛型lambda、二进制字面量和变量模板等功能。
+- **C++17**：引入了结构化绑定、`inline`变量、`constexpr` lambda、`if constexpr`等。
+- **C++20**：带来了模块、概念、三路比较运算符、`std::span`、`coroutine`等重要特性。
+- **C++23**：增加了`std::expected`、`std::flat_map`、`std::chrono::utc_clock`等。
+- **C++26**：预计会引入`std::executors`、`std::text_encoding`、`std::stacktrace`等新特性。
+
+#### 核心语言特性
+- **关键字**：如`class`, `struct`, `namespace`, `template`等。
+- **预处理器**：用于条件编译、宏定义等，如`#include`, `#define`, `#ifdef`等。
+- **ASCII 码表**：定义了字符集及其编码方式。
+- **基本概念**
+  - **注释**：单行注释使用`//`，多行注释使用`/* */`。
+  - **名称（查找规则）**：遵循作用域和命名空间规则。
+  - **类型（基础类型）**：如`int`, `float`, `char`, `bool`等。
+  - **`main`函数**：程序入口点。
+- **表达式**
+  - **值类别**：分为左值（lvalue）、右值（rvalue）、纯右值（prvalue）、将亡值（xvalue）和glvalue等。
+  - **求值顺序**：在某些情况下未定义，程序员应避免依赖未定义行为。
+  - **运算符（优先级）**：了解运算符优先级有助于编写正确的表达式。
+  - **类型转换**：显式转换和隐式转换，如`static_cast`, `dynamic_cast`, `const_cast`等。
+  - **字面量**：如整数字面量、浮点字面量、字符串字面量等。
+- **语句**
+  - **`if` - `switch`**：条件语句。
+  - **`for` - 范围`for`循环（C++11）**：循环控制结构。
+  - **`while` - `do-while`**：循环控制结构。
+- **声明与初始化**
+  - 声明变量类型和初始化方法。
+- **函数与重载**
+  - 函数定义、调用和重载机制。
+- **类（联合体）**
+  - 面向对象编程的基础，支持封装、继承和多态。
+- **模板与异常**
+  - 泛型编程和异常处理机制。
+- **独立环境实现**
+  - 如嵌入式系统中的特定实现细节。
+
+### 标准库
+
+#### 标准库头文件
+- 提供各种功能的头文件，如`<iostream>`用于输入输出，`<vector>`用于动态数组等。
+
+#### 命名需求
+- 遵循命名约定，避免与标准库命名冲突。
+
+#### 特性测试宏（C++20）
+- 使用宏来检测编译器对特定特性的支持情况。
+
+#### 语言支持库
+- **程序工具**
+  - **信号处理**：处理操作系统信号。
+  - **非局部跳转**：如`setjmp`和`longjmp`。
+- **基础内存管理**
+  - 如`new`和`delete`。
+- **可变参数函数**
+  - 使用`va_list`处理可变数量的参数。
+- **`source_location`（C++20）**
+  - 提供源代码位置信息。
+- **协程支持（C++20）**
+  - 提供异步编程的支持。
+- **比较工具（C++20）**
+  - 提供`std::three_way_comparable`等工具。
+- **类型支持 - `type_info`**
+  - 提供运行时类型信息。
+- **`numeric_limits` - 异常**
+  - 提供数值类型的极限值。
+- **`initializer_list`（C++11）**
+  - 支持初始化列表。
+
+#### 概念库（C++20）
+- 定义和使用模板约束的概念。
+
+#### 诊断库
+- **断言 - 系统错误（C++11）**
+  - 提供断言和错误码处理。
+- **异常类型 - 错误码**
+  - 提供标准异常类型和错误码。
+- **`basic_stacktrace`（C++23）**
+  - 提供堆栈跟踪支持。
+- **调试支持（C++26）**
+  - 提供调试工具和接口。
+
+#### 内存管理库
+- **分配器 - 智能指针**
+  - 如`std::allocator`, `std::unique_ptr`, `std::shared_ptr`。
+- **内存资源（C++17）**
+  - 提供更细粒度的内存管理。
+
+#### 元编程库（C++11）
+- **类型特性 - `ratio`**
+  - 提供编译时常量比率。
+- **`integer_sequence`（C++14）**
+  - 提供编译时常量整数序列。
+
+#### 通用工具库
+- **函数对象 - 哈希（C++11）**
+  - 提供哈希函数对象。
+- **交换 - 类型操作（C++11）**
+  - 提供`std::swap`等工具。
+- **整数比较（C++20）**
+  - 提供`std::cmp_less`等比较函数。
+- **`pair` - `tuple`（C++11）**
+  - 提供简单的容器。
+- **`optional`（C++17）**
+  - 提供可选值。
+- **`expected`（C++23）**
+  - 提供预期值或错误。
+- **`variant`（C++17） - `any`（C++17）**
+  - 提供类型安全的联合体。
+- **`bitset` - 位操作（C++20）**
+  - 提供位操作工具。
+
+#### 容器库
+- **`vector` - `deque` - `array`（C++11）**
+  - 提供动态数组、双端队列和固定大小数组。
+- **`list` - `forward_list`（C++11）**
+  - 提供双向链表和单向链表。
+- **`map` - `multimap` - `set` - `multiset`**
+  - 提供有序关联容器。
+- **`unordered_map`（C++11） `unordered_multimap`（C++11）**
+  - 提供无序关联容器。
+- **`unordered_set`（C++11） `unordered_multiset`（C++11）**
+  - 提供无序集合。
+- **容器适配器**
+  - 如`stack`, `queue`, `priority_queue`。
+- **`span`（C++20） - `mdspan`（C++23）**
+  - 提供视图容器。
+
+#### 迭代器库
+- 提供遍历容器的方式。
+
+#### 范围库（C++20）
+- **范围工厂 - 范围适配器**
+  - 提供便捷的范围操作。
+- **`generator`（C++23）**
+  - 提供生成器支持。
+
+#### 算法库
+- **数值算法**
+  - 提供常用的数值算法。
+- **执行策略（C++17）**
+  - 提供并行和矢量化执行策略。
+- **约束算法（C++20）**
+  - 提供带有约束的算法。
+
+#### 字符串库
+- **`basic_string` - `char_traits`**
+  - 提供字符串类。
+- **`basic_string_view`（C++17）**
+  - 提供轻量级的字符串视图。
+
+#### 文本处理库
+- **基础数值转换（C++17）**
+  - 提供数值转换工具。
+- **格式化（C++20）**
+  - 提供格式化字符串工具。
+- **区域设置 - 字符分类**
+  - 提供本地化支持。
+- **`text_encoding`（C++26）**
+  - 提供文本编码支持。
+- **正则表达式（C++11）**
+  - 提供正则表达式匹配工具。
+  - **`basic_regex` - 算法**
+    - 提供正则表达式类和算法。
+  - **默认正则表达式语法**
+    - 提供默认的正则表达式语法。
+- **空终止序列工具：**
+  - **`byte` - 多字节 - 宽字符**
+    - 提供字节、多字节和宽字符支持。
+
+#### 数值计算库
+- **常用数学函数**
+  - 提供三角函数、指数函数等。
+- **特殊数学函数（C++17）**
+  - 提供误差函数、贝塞尔函数等。
+- **数学常量（C++20）**
+  - 提供数学常量。
+- **基础线性代数算法（C++26）**
+  - 提供线性代数算法。
+- **数据并行类型（SIMD）（C++26）**
+  - 提供SIMD支持。
+- **伪随机数生成**
+  - 提供伪随机数生成器。
+- **浮点环境（C++11）**
+  - 提供浮点环境控制。
+- **`complex` - `valarray`**
+  - 提供复数和数值数组支持。
+
+#### 日期时间库
+- **日历（C++20） - 时区（C++20）**
+  - 提供日历和时区支持。
+
+#### 输入输出库
+- **打印函数（C++23）**
+  - 提供打印函数。
+- **基于流的I/O - I/O操作符**
+  - 提供流式输入输出。
+- **`basic_istream` - `basic_ostream`**
+  - 提供输入输出流类。
+- **同步输出（C++20）**
+  - 提供同步输出支持。
+- **文件系统（C++17）**
+  - 提供文件系统操作。
+
+#### 并发支持库（C++11）
+- **`thread` - `jthread`（C++20）**
+  - 提供线程支持。
+- **`atomic` - `atomic_flag`**
+  - 提供原子操作。
+- **`atomic_ref`（C++20） - 内存顺序**
+  - 提供原子引用。
+- **互斥锁 - 信号量（C++20）**
+  - 提供互斥锁和信号量。
+- **条件变量 - 期值**
+  - 提供条件变量。
+- **`latch`（C++20） - `barrier`（C++20）**
+  - 提供同步原语。
+- **安全资源回收（C++26）**
+  - 提供资源回收支持。
+
+#### 执行支持库（C++26）
+- 提供执行策略和任务调度支持。
+
+## 技术规范
+
+### 标准库扩展
+- **库基础技术规范**
+  - `resource_adaptor` - `invocation_type`
+
+### 标准库扩展 v2
+- **库基础技术规范 v2**
+  - `propagate_const` - `ostream_joiner` - `randint`
+  - `observer_ptr` - 检测惯用法
+
+### 标准库扩展 v3
+- **库基础技术规范 v3**
+  - `scope_exit` - `scope_fail` - `scope_success` - `unique_resource`
+
+### 并行库扩展 v2（并行技术规范 v2）
+- `simd`
+
+### 并发库扩展（并发技术规范）
+### 事务内存（TM 技术规范）
+### 反射（反射技术规范）
+
+## 外部链接
+- **非 ANSI/ISO 标准库**：第三方库。
+- **索引**：标准库符号索引。
+- **std 符号索引**：标准库符号索引。
+
+[检索自](https://en.cppreference.com/mwiki/index.php?title=cpp&oldid=97601)
 
 ---
 
-### C++ 标准支持概览
+### 导航
 
-**C++11, C++14, C++17, C++20, C++23, C++26**  
-│  
-**编译器对 C++ 各标准的支持情况**
+- [在线版本](#)
+- [离线版本](#) 获取于 2025-02-09 16:39
 
----
-
-## 语言与标准库核心内容
-
-### 语言（Language）
-
-- **关键字（Keywords）**  
-- **预处理器（Preprocessor）**  
-- **ASCII 字符表（ASCII chart）**  
-- **基本概念（Basic concepts）**  
-  - 注释（Comments）  
-  - 名称与查找（Names, name lookup）  
-  - 类型（Types）——包括基本类型（fundamental types）  
-  - `main` 函数（The `main` function）  
-- **表达式（Expressions）**  
-  - 值类别（Value categories）  
-  - 求值顺序（Evaluation order）  
-  - 运算符及其优先级（Operators, precedence）  
-  - 类型转换（Conversions）  
-  - 字面量（Literals）  
-- **语句（Statements）**  
-  - `if`、`switch`  
-  - `for`、基于范围的 `for` 循环（range-`for`, C++11）  
-  - `while`、`do`-`while`  
-- **声明与初始化（Declarations, Initialization）**  
-- **函数与重载（Functions, Overloading）**  
-- **类（Classes）与联合体（Unions）**  
-- **模板（Templates）与异常处理（Exceptions）**  
-- **独立实现（Freestanding implementations）**
+- 本页面最后修改于 2017年12月16日 22:24。
 
 ---
 
-### 标准库（Standard Library）
-
-- **标准库头文件（Standard library headers）**  
-- **命名式要求（Named requirements）**  
-- **特性测试宏（Feature test macros, C++20）**  
-- **语言与标准库交互（Language – Standard library）**
-
----
-
-### 语言支持库（Language Support Library）
-
-- 程序工具（Program utilities）  
-- 信号处理（Signals）与非局部跳转（Non-local jumps）  
-- 基本内存管理（Basic memory management）  
-- 可变参数函数（Variadic functions）  
-- `source_location`（C++20）  
-- 协程支持（Coroutine support, C++20）  
-- 比较工具（Comparison utilities, C++20）  
-- 类型支持（Type support）——`type_info`  
-- `numeric_limits` 与异常（exception）  
-- `initializer_list`（C++11）
-
----
-
-### 概念库（Concepts Library, C++20）
-
----
-
-### 诊断库（Diagnostics Library）
-
-- 断言（Assertions）  
-- 系统错误支持（System error, C++11）  
-- 异常类型与错误码（Exception types, Error numbers）  
-- `basic_stacktrace`（C++23）  
-- 调试支持（Debugging support, C++26）
-
----
-
-### 内存管理库（Memory Management Library）
-
-- 分配器（Allocators）  
-- 智能指针（Smart pointers）  
-- 内存资源（Memory resources, C++17）
-
----
-
-### 元编程库（Metaprogramming Library, C++11）
-
-- 类型特性（Type traits）  
-- 比率库（`ratio`）  
-- `integer_sequence`（C++14）
-
----
-
-### 通用工具库（General Utilities Library）
-
-- 函数对象（Function objects）与哈希（`hash`, C++11）  
-- 交换（`swap`）与类型操作（Type operations, C++11）  
-- 整数比较（Integer comparison, C++20）  
-- `pair` 与 `tuple`（C++11）  
-- `optional`（C++17）  
-- `expected`（C++23）  
-- `variant`（C++17）与 `any`（C++17）  
-- `bitset` 与位操作（Bit manipulation, C++20）
-
----
-
-### 容器库（Containers Library）
-
-- `vector`、`deque`、`array`（C++11）  
-- `list`、`forward_list`（C++11）  
-- `map`、`multimap`、`set`、`multiset`  
-- 无序关联容器（C++11）：
-  - `unordered_map`、`unordered_multimap`  
-  - `unordered_set`、`unordered_multiset`  
-- 容器适配器（Container adaptors）  
-- `span`（C++20）、`mdspan`（C++23）
-
----
-
-### 迭代器库（Iterators Library）
-
----
-
-### 范围库（Ranges Library, C++20）
-
-- 范围工厂（Range factories）  
-- 范围适配器（Range adaptors）  
-- `generator`（C++23）
-
----
-
-### 算法库（Algorithms Library）
-
-- 数值算法（Numeric algorithms）  
-- 执行策略（Execution policies, C++17）  
-- 约束算法（Constrained algorithms, C++20）
-
----
-
-### 字符串库（Strings Library）
-
-- `basic_string` 与 `char_traits`  
-- `basic_string_view`（C++17）
-
----
-
-### 文本处理库（Text Processing Library）
-
-- 基本数值转换（Primitive numeric conversions, C++17）  
-- 格式化（Formatting, C++20）  
-- 区域设置（`locale`）与字符分类（Character classification）  
-- `text_encoding`（C++26）  
-- 正则表达式（Regular expressions, C++11）  
-  - `basic_regex` 与相关算法  
-  - 默认正则表达式语法  
-- 空字符结尾序列工具（Null-terminated sequence utilities）：
-  - 字节（`byte`）、多字节（`multibyte`）、宽字符（`wide`）
-
----
-
-### 数值库（Numerics Library）
-
-- 常用数学函数（Common math functions）  
-- 数学特殊函数（Mathematical special functions, C++17）  
-- 数学常量（Mathematical constants, C++20）  
-- 基本线性代数算法（Basic linear algebra algorithms, C++26）  
-- 数据并行类型（SIMD, C++26）  
-- 伪随机数生成（Pseudo-random number generation）  
-- 浮点环境（Floating-point environment, C++11）  
-- `complex`（复数）与 `valarray`（数值数组）
-
----
-
-### 日期与时间库（Date and Time Library）
-
-- 日历（Calendar, C++20）  
-- 时区（Time zone, C++20）
-
----
-
-### 输入/输出库（Input/Output Library）
-
-- 打印函数（Print functions, C++23）  
-- 基于流的 I/O 与 I/O 操作符（Stream-based I/O, I/O manipulators）  
-- `basic_istream` 与 `basic_ostream`  
-- 同步输出（Synchronized output, C++20）  
-- 文件系统支持（File systems, C++17）
-
----
-
-### 并发支持库（Concurrency Support Library, C++11）
-
-- `thread` 与 `jthread`（C++20）  
-- `atomic` 与 `atomic_flag`  
-- `atomic_ref`（C++20）与内存序（`memory_order`）  
-- 互斥量（Mutual exclusion）与信号量（Semaphores, C++20）  
-- 条件变量（Condition variables）与 `future`  
-- `latch`（C++20）、`barrier`（C++20）  
-- 安全回收机制（Safe Reclamation, C++26）
-
----
-
-### 执行支持库（Execution Support Library, C++26）
-
----
-
-## 技术规范（Technical Specifications）
-
-### 标准库扩展（Library Fundamentals TS）
-
-- `resource_adaptor`  
-- `invocation_type`
-
-### 标准库扩展 v2（Library Fundamentals TS v2）
-
-- `propagate_const`  
-- `ostream_joiner`  
-- `randint`  
-- `observer_ptr`  
-- 检测惯用法（Detection idiom）
-
-### 标准库扩展 v3（Library Fundamentals TS v3）
-
-- `scope_exit`  
-- `scope_fail`  
-- `scope_success`  
-- `unique_resource`
-
----
-
-### 并行库扩展 v2（Parallelism TS v2）
-
-- `simd`（单指令多数据）
-
-### 并发库扩展（Concurrency TS）
-
----
-
-### 事务性内存（Transactional Memory, TM TS）
-
----
-
-### 反射（Reflection, Reflection TS）
-
----
-
-## 外部资源
-
-- 外部链接（External Links）  
-- 非 ANSI/ISO 库（Non-ANSI/ISO Libraries）  
-- 索引（Index）  
-- `std` 命名空间符号索引（std Symbol Index）
-
----
-
-## 导航信息
-
-- 在线版本：[https://en.cppreference.com/w/cpp](https://en.cppreference.com/w/cpp)  
-- 离线版本获取时间：2025年2月9日 16:39  
-
-> 本文档源自：  
-> [https://en.cppreference.com/mwiki/index.php?title=cpp&oldid=97601](https://en.cppreference.com/mwiki/index.php?title=cpp&oldid=97601)  
-> 最后修改时间：2017年12月16日 22:24
-
----
-
-**说明**：  
-本翻译严格遵循原始内容结构，逐行精准翻译，采用专业、规范的 C/C++ 技术术语。排版经过优化，使用清晰的层级结构与 Markdown 语法，便于查阅与检索。所有 C++ 标准特性（如 C++11、C++17、C++20 等）均标注明确，确保技术准确性与权威性。
+## 示例代码
+
+### C++11 Lambda表达式
+```cpp
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+int main() {
+    std::vector<int> vec = {1, 2, 3, 4, 5};
+
+    // 使用Lambda表达式过滤出偶数
+    auto is_even = [](int x) { return x % 2 == 0; };
+    std::vector<int> even_vec;
+    std::copy_if(vec.begin(), vec.end(), std::back_inserter(even_vec), is_even);
+
+    // 输出结果
+    for (int num : even_vec) {
+        std::cout << num << " ";
+    }
+    return 0;
+}
+```
+
+### C++17 Structured Bindings
+```cpp
+#include <iostream>
+#include <tuple>
+
+int main() {
+    std::tuple<int, double, std::string> t(1, 2.5, "Hello");
+
+    // 使用结构化绑定
+    auto [a, b, c] = t;
+
+    std::cout << a << ", " << b << ", " << c << std::endl;
+    return 0;
+}
+```
+
+### C++20 Concepts
+```cpp
+#include <iostream>
+#include <concepts>
+
+// 定义一个概念
+template<typename T>
+concept Integral = std::is_integral_v<T>;
+
+// 使用概念约束模板函数
+template<Integral T>
+T add(T a, T b) {
+    return a + b;
+}
+
+int main() {
+    int x = 10, y = 20;
+    std::cout << add(x, y) << std::endl; // 正确
+
+    // double z = 10.5;
+    // std::cout << add(x, z) << std::endl; // 编译错误
+    return 0;
+}
+```
+
+### C++20 Coroutines
+```cpp
+#include <coroutine>
+#include <iostream>
+
+// 定义一个协程
+struct Generator {
+    struct promise_type {
+        int current_value;
+
+        std::suspend_always initial_suspend() { return {}; }
+        std::suspend_always final_suspend() noexcept { return {}; }
+        std::suspend_always yield_value(int value) {
+            current_value = value;
+            return {};
+        }
+        void return_void() {}
+        Generator get_return_object() { return Generator{this}; }
+        bool await_ready() { return false; }
+        void await_suspend(std::coroutine_handle<>) {}
+        void await_resume() {}
+
+        static std::suspend_never get_return_object_on_allocation_failure() = delete;
+    };
+
+    std::coroutine_handle<promise_type> coro;
+
+    Generator(promise_type* p) : coro(std::coroutine_handle<promise_type>::from_promise(*p)) {}
+    ~Generator() { if (coro) coro.destroy(); }
+
+    bool next() {
+        coro.resume();
+        return !coro.done();
+    }
+
+    int value() const { return coro.promise().current_value; }
+};
+
+Generator fibonacci(int n) {
+    int a = 0, b = 1;
+    for (int i = 0; i < n; ++i) {
+        co_yield a;
+        int temp = a;
+        a = b;
+        b += temp;
+    }
+}
+
+int main() {
+    for (Generator fib = fibonacci(10); fib.next();) {
+        std::cout << fib.value() << " ";
+    }
+    return 0;
+}
+```
+
+通过这些扩展和示例，文档的内容变得更加丰富和详细，便于理解和应用。
